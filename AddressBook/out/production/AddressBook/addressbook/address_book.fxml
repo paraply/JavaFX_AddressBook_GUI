@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.input.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="400.0" maxWidth="708.0" minHeight="380.0" minWidth="600.0" prefHeight="380.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="addressbook.AddressBookController">
+   <children>
+      <MenuBar fx:id="menuBar" maxHeight="30.0" maxWidth="600.0" minHeight="30.0" minWidth="600.0" prefHeight="30.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="%fileMenu.text">
+            <items>
+                  <MenuItem fx:id="menNewContact" mnemonicParsing="false" text="New Contact">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/New16.gif" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem fx:id="menDelContact" mnemonicParsing="false" text="Delete Contact">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/Delete16.gif" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+              <MenuItem mnemonicParsing="false" onAction="#closeApplicationActionPerformed" text="%exitApplicationMenuItem.text" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="%helpMenu.text">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#openAboutActionPerformed" text="%aboutMenuItem.text" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="-2.0" layoutY="72.0" prefHeight="328.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="72.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <ListView fx:id="addrList" layoutX="7.0" layoutY="9.0" prefHeight="309.0" prefWidth="161.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="272.0" prefWidth="487.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" layoutX="6.0" layoutY="14.0" prefWidth="100.0" text="%firstNameLabel.text">
+                     <font>
+                        <Font name="HelveticaLTStd-Roman" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" layoutX="6.0" layoutY="56.0" prefWidth="100.0" text="%lastNameLabel.text">
+                     <font>
+                        <Font name="HelveticaLTStd-Roman" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="7.0" top="7.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" layoutX="6.0" layoutY="92.0" prefWidth="100.0" text="%phoneLabel.text">
+                     <font>
+                        <Font name="HelveticaLTStd-Roman" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="7.0" top="7.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" layoutX="6.0" layoutY="128.0" prefWidth="100.0" text="%emailLabel.text">
+                     <font>
+                        <Font name="HelveticaLTStd-Roman" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="7.0" top="7.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" layoutX="6.0" layoutY="164.0" prefWidth="100.0" text="%addressLabel.text">
+                     <font>
+                        <Font name="HelveticaLTStd-Roman" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="7.0" top="7.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" layoutX="6.0" layoutY="200.0" prefWidth="100.0" text="%postcodeLabel.text">
+                     <font>
+                        <Font name="HelveticaLTStd-Roman" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="7.0" top="7.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" layoutX="6.0" layoutY="236.0" prefWidth="100.0" text="%cityLabel.text">
+                     <font>
+                        <Font name="HelveticaLTStd-Roman" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="7.0" top="7.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="txtFstName" layoutX="120.0" layoutY="23.0" minWidth="360.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="360.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="8.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextField>
+                  <TextField fx:id="txtLstName" layoutX="120.0" layoutY="62.0" minWidth="360.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="360.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="8.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextField>
+                  <TextField fx:id="txtPhone" layoutX="120.0" layoutY="98.0" minWidth="360.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="360.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="8.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextField>
+                  <TextField fx:id="txtEmail" layoutX="120.0" layoutY="134.0" minWidth="360.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="360.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="8.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextField>
+                  <TextField fx:id="txtAddress" layoutX="120.0" layoutY="170.0" minWidth="360.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="360.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="8.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextField>
+                  <TextField fx:id="txtPostCode" layoutX="120.0" layoutY="206.0" minWidth="360.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="360.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="8.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextField>
+                  <TextField fx:id="txtCity" layoutX="120.0" layoutY="242.0" minWidth="360.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="360.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="8.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextField>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <ToolBar layoutY="30.0" maxHeight="42.0" minHeight="42.0" prefHeight="42.0" prefWidth="708.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <items>
+          <Button fx:id="newButton" mnemonicParsing="false" onAction="#newButtonActionPerformed">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/New24.gif" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="deleteButton" mnemonicParsing="false">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/Delete24.gif" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+        </items>
+      </ToolBar>
+   </children>
+</AnchorPane>
