@@ -56,10 +56,6 @@ public class AddressBookController implements Initializable {
                 txtPostCode,
                 txtCity);
 
-        addrList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            presenter.contactsListChanged();
-        });
-
         txtFstName.focusedProperty().addListener(new TextFieldListener(txtFstName));
         txtLstName.focusedProperty().addListener(new TextFieldListener(txtLstName));
         txtPhone.focusedProperty().addListener(new TextFieldListener(txtPhone));
@@ -69,12 +65,29 @@ public class AddressBookController implements Initializable {
         txtCity.focusedProperty().addListener(new TextFieldListener(txtCity));
 
         presenter.init();
+
+        addrList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                presenter.contactsListChanged();
+            }
+        });
+
+
+        addrList.getSelectionModel().select(0);
+        presenter.contactsListChanged();
     }
 
 
     @FXML
     protected void newButtonActionPerformed(ActionEvent event){
         presenter.newContact();
+    }
+
+
+    @FXML
+    protected void delButtonActionPerformed(ActionEvent event){
+        presenter.removeCurrentContact();
     }
 
     @FXML
@@ -112,22 +125,24 @@ public class AddressBookController implements Initializable {
         addressBookStage.hide();
     }
 
-     class TextFieldListener implements ChangeListener<Boolean>{
+    private class TextFieldListener implements ChangeListener<Boolean>{
 
-         private TextField textField;
+        private TextField textField;
 
-         public  TextFieldListener(TextField textField){
-             this.textField = textField;
-         }
+        public TextFieldListener(TextField textField){
+            this.textField = textField;
+        }
 
-         @Override
-         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-            if (newValue){
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            if(newValue){
                 presenter.textFieldFocusGained(textField);
-            }else{
+
+            }
+            else{
                 presenter.textFieldFocusLost(textField);
             }
-         }
-     }
+        }
+    }
 
 }

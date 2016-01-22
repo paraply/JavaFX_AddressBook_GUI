@@ -19,11 +19,11 @@ public class AddressBook extends Application {
         
         Parent root = FXMLLoader.load(getClass().getResource("address_book.fxml"), bundle);
         
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 600, 360);
         
         stage.setTitle(bundle.getString("application.name"));
         stage.setScene(scene);
-        stage.getIcons().add(new Image("addressbook/resources/frameIcon32.gif"));
+        stage.getIcons().add(new Image("addressbook/resources/appicon.png"));
         stage.show();
     }
 
@@ -32,8 +32,11 @@ public class AddressBook extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            Model.getInstance().shutDown();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            public void run() {
+                Model.getInstance().shutDown();
+            }
         }));
     }
     
